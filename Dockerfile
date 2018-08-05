@@ -17,7 +17,6 @@ ARG CURL_VER="7.61.0"
 # set env
 ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 ENV LD_LIBRARY_PATH=/usr/local/lib
-ENV FLOOD_SECRET=password
 ENV CONTEXT_PATH=/
     
 RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
