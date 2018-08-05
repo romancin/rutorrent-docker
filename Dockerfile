@@ -54,7 +54,8 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         php7-json  \
         php7-mbstring \
         php7-sockets \
-        php7-pear && \
+        php7-pear \
+	python && \
 
 # install build packages
  apk add --no-cache --virtual=build-dependencies \
@@ -196,5 +197,5 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
 COPY root/ /
 
 # ports and volumes
-EXPOSE 443 51415 3000
+EXPOSE 443 51415
 VOLUME /config /downloads
