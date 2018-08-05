@@ -54,7 +54,8 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         php7-json  \
         php7-mbstring \
         php7-sockets \
-        php7-pear && \
+        php7-pear \
+	python && \
 
 # install build packages
  apk add --no-cache --virtual=build-dependencies \
