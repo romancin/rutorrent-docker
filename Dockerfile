@@ -56,7 +56,6 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         php7-sockets \
         php7-pear \
 	python && \
-
 # install build packages
  apk add --no-cache --virtual=build-dependencies \
         autoconf \
@@ -76,7 +75,6 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         linux-headers \
         curl-dev \
         libressl-dev && \
-
 # compile curl to fix ssl for rtorrent
 cd /tmp && \
 mkdir curl && \
@@ -84,7 +82,6 @@ cd curl && \
 wget -qO- https://curl.haxx.se/download/curl-${CURL_VER}.tar.gz | tar xz --strip 1 && \
 ./configure --with-ssl && make -j ${NB_CORES} && make install && \
 ldconfig /usr/bin && ldconfig /usr/lib && \
-
 # install webui
  mkdir -p \
         /usr/share/webapps/rutorrent \
@@ -95,7 +92,6 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
         /defaults/rutorrent-conf/ && \
  rm -rf \
         /defaults/rutorrent-conf/users && \
-
 # install webui extras
 # QuickBox Theme
 git clone https://github.com/QuickBox/club-QuickBox /usr/share/webapps/rutorrent/plugins/theme/themes/club-QuickBox && \
@@ -133,18 +129,15 @@ sed -i 's/changeWhat = "cell-background";/changeWhat = "font";/g' /usr/share/web
 git clone https://github.com/Gyran/rutorrent-instantsearch instantsearch && \
 git clone https://github.com/xombiemp/rutorrentMobile && \
 git clone https://github.com/dioltas/AddZip && \
-
 # install autodl-irssi perl modules
  perl -MCPAN -e 'my $c = "CPAN::HandleConfig"; $c->load(doit => 1, autoconfig => 1); $c->edit(prerequisites_policy => "follow"); $c->edit(build_requires_install_policy => "yes"); $c->commit' && \
  curl -L http://cpanmin.us | perl - App::cpanminus && \
         cpanm HTML::Entities XML::LibXML JSON JSON::XS && \
-
 # compile xmlrpc-c
 cd /tmp && \
 svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c && \
 cd /tmp/xmlrpc-c && \
 ./configure --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
-
 # compile libtorrent
 apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main -U cppunit-dev==1.13.2-r1 cppunit==1.13.2-r1 && \
 cd /tmp && \
@@ -152,14 +145,12 @@ mkdir libtorrent && \
 cd libtorrent && \
 wget -qO- https://github.com/rakshasa/libtorrent/archive/${LIBTORRENT_VER}.tar.gz | tar xz --strip 1 && \
 ./autogen.sh && ./configure && make -j ${NB_CORES} && make install && \
-
 # compile rtorrent
 cd /tmp && \
 mkdir rtorrent && \
 cd rtorrent && \
 wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | tar xz --strip 1 && \
 ./autogen.sh && ./configure --with-xmlrpc-c && make -j ${NB_CORES} && make install && \
-
 # compile mediainfo packages
  curl -o \
  /tmp/libmediainfo.tar.gz -L \
@@ -174,7 +165,6 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
         /tmp/libmediainfo --strip-components=1 && \
  tar xf /tmp/mediainfo.tar.gz -C \
         /tmp/mediainfo --strip-components=1 && \
-
  cd /tmp/libmediainfo && \
         ./SO_Compile.sh && \
  cd /tmp/libmediainfo/ZenLib/Project/GNU/Library && \
@@ -185,17 +175,14 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
         ./CLI_Compile.sh && \
  cd /tmp/mediainfo/MediaInfo/Project/GNU/CLI && \
         make install && \
-
 # cleanup
  apk del --purge \
         build-dependencies && \
  apk del -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main cppunit-dev && \
  rm -rf \
         /tmp/*
-
 # add local files
 COPY root/ /
-
 # ports and volumes
 EXPOSE 443 51415
 VOLUME /config /downloads
