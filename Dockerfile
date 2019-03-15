@@ -9,10 +9,11 @@ ARG BUILD_CORES
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
-ARG MEDIAINF_VER="18.05"
-ARG RTORRENT_VER="0.9.4"
-ARG LIBTORRENT_VER="0.13.4"
-ARG CURL_VER="7.61.0"
+ARG MEDIAINF_VER="18.12"
+ARG RTORRENT_VER="v0.9.7"
+ARG LIBTORRENT_VER="v0.13.7"
+ARG CURL_VER="7.64.0"
+ARG RAR_VER="5.7.0"
 
 # set env
 ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
@@ -117,8 +118,8 @@ cd .. && \
 rm -rf plowshare* && \
 apk add --no-cache unzip bzip2 && \
 cd /tmp && \
-wget http://www.rarlab.com/rar/rarlinux-x64-5.4.0.tar.gz && \
-tar zxvf rarlinux-x64-5.4.0.tar.gz && \
+wget http://www.rarlab.com/rar/rarlinux-x64-${RAR_VER}.tar.gz && \
+tar zxvf rarlinux-x64-${RAR_VER}.tar.gz && \
 mv rar/rar /usr/bin && \
 mv rar/unrar /usr/bin && \
 rm -rf rar;rm rarlinux-* && \
