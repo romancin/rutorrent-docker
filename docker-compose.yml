@@ -1,11 +1,14 @@
 version: '2'
 services:
     rutorrent-develop:
-      image: romancin/rutorrent:develop3.9
+      image: romancin/rutorrent:develop
       container_name: rutorrent-develop
       networks:
         - default
       tty: true
+      volumes:
+        - /share/Container/rutorrent-develop:/config
+        - /share/Container/rutorrent-develop/downloads:/downloads
       environment:
         - PUID=0
         - PGID=0
