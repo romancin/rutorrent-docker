@@ -9,10 +9,10 @@ ARG BUILD_CORES
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
-ARG MEDIAINF_VER="18.05"
-ARG RTORRENT_VER="0.9.6"
-ARG LIBTORRENT_VER="0.13.6"
-ARG CURL_VER="7.61.0"
+ARG MEDIAINF_VER="18.12"
+ARG RTORRENT_VER="v0.9.7"
+ARG LIBTORRENT_VER="v0.13.7"
+ARG CURL_VER="7.64.0"
 
 # set env
 ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
@@ -116,12 +116,6 @@ make install && \
 cd .. && \
 rm -rf plowshare* && \
 apk add --no-cache unzip bzip2 && \
-cd /tmp && \
-wget http://www.rarlab.com/rar/rarlinux-x64-5.4.0.tar.gz && \
-tar zxvf rarlinux-x64-5.4.0.tar.gz && \
-mv rar/rar /usr/bin && \
-mv rar/unrar /usr/bin && \
-rm -rf rar;rm rarlinux-* && \
 cd /usr/share/webapps/rutorrent/plugins/ && \
 git clone https://github.com/Gyran/rutorrent-pausewebui pausewebui && \
 git clone https://github.com/Gyran/rutorrent-ratiocolor ratiocolor && \
@@ -139,7 +133,7 @@ svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c && \
 cd /tmp/xmlrpc-c && \
 ./configure --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
 # compile libtorrent
-apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main -U cppunit-dev==1.13.2-r1 cppunit==1.13.2-r1 && \
+#apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main -U cppunit-dev==1.13.2-r1 cppunit==1.13.2-r1 && \
 cd /tmp && \
 mkdir libtorrent && \
 cd libtorrent && \
@@ -178,7 +172,7 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
 # cleanup
  apk del --purge \
         build-dependencies && \
- apk del -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main cppunit-dev && \
+# apk del -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main cppunit-dev && \
  rm -rf \
         /tmp/*
 # add local files
