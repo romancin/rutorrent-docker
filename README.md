@@ -49,6 +49,7 @@ docker run -d --name=rutorrent \
 -p 9443:443 \
 -p 51415-51415:51415-51415 \
 romancin/rutorrent:latest
+```
 
 For rtorrent 0.9.6 version:
 
