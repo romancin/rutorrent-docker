@@ -1,8 +1,8 @@
 version: '2'
 services:
     rutorrent-develop:
-      image: romancin/rutorrent:develop
-      container_name: rutorrent-develop
+      image: romancin/rutorrent:latest
+      container_name: rutorrent
       networks:
         - default
       tty: true
