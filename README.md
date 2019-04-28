@@ -78,13 +78,12 @@ Remember editing `/config/rtorrent/rtorrent.rc` with your own settings, especial
 
 ## Environment variables supported
 
-List of environment variables:
 | Variable | Function |
 | :----: | --- |
-| PUID | for UserID - see below for explanation |
-| PGID | for GroupID - see below for explanation |
-| TZ | Specify a timezone to use e.g. Europe/Madrid |
-| CREATE_SUBDIR_BY_TRACKERS | YES to create downloads/watch subfolder for trackers (OLD BEHAVIOUR) or NO to create only completed/watch folder (DEFAULT) |
+| `-e PUID=1000` | for UserID - see below for explanation |
+| `-e PGID=1000` | for GroupID - see below for explanation |
+| `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
+| `-e CREATE_SUBDIR_BY_TRACKERS=YES` | YES to create downloads/watch subfolder for trackers (OLD BEHAVIOUR) or NO to create only completed/watch folder (DEFAULT) |
 
 ## User / Group Identifiers
 
