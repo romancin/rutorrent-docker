@@ -36,6 +36,9 @@ In order to change rutorrent web access password execute this inside container:
 - `sh -c "echo -n 'admin:' > /config/nginx/.htpasswd"`
 - `sh -c "openssl passwd -apr1 >> /config/nginx/.htpasswd"`
 
+**IMPORTANT** 
+- Since v1.0.0 version, rtorrent.rc file has changed completely, so rename it before starting with the new image the first time. After first run, add the changes you need to this config file. It is on <YOUR_MAPPED_FOLDER>/rtorrent directory.
+- Since v2.0.0 version, config.php of rutorrent has added new utilities, so rename it before starting with the new image the first time. After first run, add the changes you need to this config file. It is on <YOUR_MAPPED_FOLDER>/rutorrent/settings directory.
 ## Sample run command
 
 For rtorrent 0.9.7 version:
