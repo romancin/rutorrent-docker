@@ -9,7 +9,7 @@ ARG BUILD_CORES
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
-ARG MEDIAINF_VER="18.12"
+ARG MEDIAINF_VER="19.04"
 ARG RTORRENT_VER="v0.9.7"
 ARG LIBTORRENT_VER="v0.13.7"
 ARG CURL_VER="7.64.1"
@@ -18,6 +18,7 @@ ARG CURL_VER="7.64.1"
 ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 ENV LD_LIBRARY_PATH=/usr/local/lib
 ENV CONTEXT_PATH=/
+ENV CREATE_SUBDIR_BY_TRACKERS="no"
     
 RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
  apk add --no-cache \
@@ -55,7 +56,8 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         php7-mbstring \
         php7-sockets \
         php7-pear \
-	python && \
+	python \
+	python3 && \
 # install build packages
  apk add --no-cache --virtual=build-dependencies \
         autoconf \
@@ -92,6 +94,7 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
         /defaults/rutorrent-conf/ && \
  rm -rf \
         /defaults/rutorrent-conf/users && \
+ pip3 install CfScrape && \
 # install webui extras
 # QuickBox Theme
 git clone https://github.com/QuickBox/club-QuickBox /usr/share/webapps/rutorrent/plugins/theme/themes/club-QuickBox && \
@@ -172,7 +175,7 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
 # cleanup
  apk del --purge \
         build-dependencies && \
-# apk del -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main cppunit-dev && \
+ #apk del -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main cppunit-dev && \
  rm -rf \
         /tmp/*
 # add local files

@@ -1,8 +1,8 @@
 version: '2'
 services:
     rutorrent-develop:
-      image: romancin/rutorrent:develop
-      container_name: rutorrent-develop
+      image: romancin/rutorrent:latest
+      container_name: rutorrent
       networks:
         - default
       tty: true
@@ -13,9 +13,10 @@ services:
         - PUID=0
         - PGID=0
         - TZ=Europe/Madrid
+        - CREATE_SUBDIR_BY_TRACKERS=NO
       ports:
         - "7443:443"
-        - "42316:52316"
+        - "32316:52316"
 networks:
   default:
     external:
