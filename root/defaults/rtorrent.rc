@@ -176,7 +176,7 @@ method.set_key = event.download.finished,move_complete,"d.move_to_complete=$d.da
 schedule2 = session_save,240,300,session_save=
 
 # Erase data when torrent deleted (no need erasedata plugin on ruTorrent)
-method.set_key = event.download.erased,delete_erased,"execute=rm,-rf,--,$d.data_path="
+#method.set_key = event.download.erased,delete_erased,"execute=rm,-rf,--,$d.data_path="
 
 # Telegram Notifications
 #method.set_key = event.download.finished,notify_me,"execute=/config/rtorrent/notify_telegram.sh,$d.name="
