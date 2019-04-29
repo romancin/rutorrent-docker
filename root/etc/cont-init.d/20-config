@@ -8,8 +8,6 @@ do
   export echo "$i"="$(echo "${!i}" | tr '[:upper:]' '[:lower:]')"
 done
 
-echo "Variable subdir trackers: $CREATE_SUBDIR_BY_TRACKERS" >> /tmp/subdir.txt
-
 if [ "$CREATE_SUBDIR_BY_TRACKERS" == "yes" ]
 then
   # make folders
