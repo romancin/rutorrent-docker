@@ -17,6 +17,7 @@ then
 elif [ "$CREATE_SUBDIR_BY_TRACKERS" == "nothing" ]
 then
   # no make extra folders
+  mkdir -p /downloads
 else
   # make original extra folders (Default)
   mkdir -p /downloads{/completed,/watch}
@@ -69,7 +70,7 @@ cp /config/php/php.ini /etc/php7/php.ini
 
 if [ "$CREATE_SUBDIR_BY_TRACKERS" == "yes" ]
 then
-  # permissions for trakers extra folders
+  # permissions for trackers extra folders
   chown abc:abc \
 	/downloads \
 	/downloads/watch/{bajaunapeli,bitspyder,torrentfactory,hachede,hdcity,learnflakes,puntotorrent,tbplus,waffles,xbytes,otros,pedros,cinemaggedon,torrentland,tunetraxx,brokenstones,32pages,lztr,p2pelite,bitgamer,psytorrents,pleasuredome,hdspain,iptorrents,trancetraffic,morethantv,passthepopcorn,gp32spain,gazellegames,opencd,mteam,retrowithin,divteam,racingforme,bibliotik,beyondhd,myanonamouse,ultimategamer,x264,awesomehd,broadcasthenet,bitme,theplace,theshow,thegeeks,thevault,theempire,theoccult,torrentleech,hdbits,zonaq,torrentech,sceneaccess,efectodoppler,musicvids,apollo,passtheheadphones,notwhatcd} \
@@ -77,6 +78,7 @@ then
 elif [ "$CREATE_SUBDIR_BY_TRACKERS" == "nothing" ]
 then
   # permissions without extra folders
+  chown abc:abc /downloads 
 else
   # permissions for original extra folders (Default)
   chown abc:abc \
