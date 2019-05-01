@@ -86,8 +86,8 @@ Remember editing `/config/rtorrent/rtorrent.rc` with your own settings, especial
 | :----: | :---- |
 | `-e PUID=1000` | for UserID - see below for explanation |
 | `-e PGID=1000` | for GroupID - see below for explanation |
-| `-e TZ=Europe/London` | Specify a timezone to use EG Europe/London. |
-| `-e CREATE_SUBDIR_BY_TRACKERS=YES` | YES to create downloads/watch subfolders for trackers (OLD BEHAVIOUR) <br> NO to create only completed/watch folders (DEFAULT) <br> NOTHING for don't create any extra subfolder on download folder (NEW OPTION) |
+| `-e TZ=Europe/London` | Specify a [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) name to use, for example `Europe/London` or `Europe/Madrid` |
+| `-e CREATE_SUBDIR_BY_TRACKERS=YES` | `YES` to create downloads/watch subfolders for trackers (OLD BEHAVIOUR) <br> `NO` to create only completed/watch folders (DEFAULT) <br> `NOTHING` don't create any extra subfolder *(ONLY ADVANCED USERS)* |
 
 ## User / Group Identifiers
 
