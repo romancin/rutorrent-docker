@@ -202,6 +202,8 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
 # add local files
 COPY root/ /
 # add rtelegram bot
+ENV RT_TOKEN="" \
+    PARAMS=""
 ADD https://github.com/pyed/rtelegram/releases/download/v1.1/rtelegram_1.1_linux_amd64.tar.gz /tmp/rtelegram.tar.gz
 RUN tar -xzvf /rtelegram /tmp/rtelegram.tar.gz && chmod +x /rtelegram/rtelegram && rm /tmp/rtelegram.tar.gz && chmod +x /rtelegram.sh
 # ports and volumes
