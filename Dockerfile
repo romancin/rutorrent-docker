@@ -205,7 +205,7 @@ COPY root/ /
 ENV RT_TOKEN="" \
     MASTER=""
 ADD https://github.com/pyed/rtelegram/releases/download/v1.1/rtelegram_1.1_linux_amd64.tar.gz /tmp/rtelegram.tar.gz
-RUN tar -xzvf /tmp/rtelegram.tar.gz /rtelegram && chmod +x /rtelegram/rtelegram && rm /tmp/rtelegram.tar.gz && chmod +x /rtelegram.sh
+RUN tar -C /rtelegram -xzvf /tmp/rtelegram.tar.gz && chmod +x /rtelegram/rtelegram && rm /tmp/rtelegram.tar.gz && chmod +x /rtelegram.sh
 # ports and volumes
 EXPOSE 443 51415
 VOLUME /config /downloads /logs
