@@ -202,6 +202,7 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
         /tmp/*
 # add local files
 COPY root/ /
+COPY VERSION /
 # ports and volumes
 EXPOSE 443 51415
 VOLUME /config /downloads
