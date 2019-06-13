@@ -22,7 +22,6 @@ pipeline {
                     docker.withRegistry('', registryCredential) {
                         def image = docker.build registry + ":latest"
                         image.push()
-                        image.push(latest)
                         image.push(major)
                         image.push(minor)
                         image.push(patch)
