@@ -33,7 +33,7 @@ pipeline {
  }
  post {
         success {
-            telegramSend '[Jenkins] - Pipeline CI-rutorrent-docker $BUILD_URL version ' + patch + ' finalizado con estado :: $BUILD_STATUS'    
+            telegramSend '[Jenkins] - Pipeline CI-rutorrent-docker $BUILD_URL finalizado con estado :: $BUILD_STATUS'    
         }
     }
 }
