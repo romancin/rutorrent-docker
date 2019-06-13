@@ -11,7 +11,7 @@ LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 # package version
 ARG MEDIAINF_VER="19.04"
 ARG RTORRENT_VER="0.9.4"
-ARG LIBTORRENT_VER="0.13."
+ARG LIBTORRENT_VER="0.13.4"
 ARG CURL_VER="7.64.1"
 ARG GEOIP_VER="1.1.1"
 
