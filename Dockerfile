@@ -9,10 +9,10 @@ ARG BUILD_CORES
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
-ARG MEDIAINF_VER="19.04"
-ARG RTORRENT_VER="v0.9.7"
-ARG LIBTORRENT_VER="v0.13.7"
-ARG CURL_VER="7.65.1"
+ARG MEDIAINF_VER="19.07"
+ARG RTORRENT_VER="v0.9.8"
+ARG LIBTORRENT_VER="v0.13.8"
+ARG CURL_VER="7.65.3"
 ARG GEOIP_VER="1.1.1"
 
 # set env
@@ -63,7 +63,7 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         php7-ctype \
         php7-dev \
         php7-phar \
-	php7-zip \
+	 php7-zip \
         python \
         python3 && \
 # install build packages
