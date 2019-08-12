@@ -42,7 +42,7 @@ In order to change rutorrent web access password execute this inside container:
 
 ## Sample run command
 
-For rtorrent 0.9.7 version:
+For rtorrent 0.9.8 version:
  
  ```bash
 docker run -d --name=rutorrent \
@@ -52,6 +52,18 @@ docker run -d --name=rutorrent \
 -p 9443:443 \
 -p 51415-51415:51415-51415 \
 romancin/rutorrent:latest
+```
+
+For rtorrent 0.9.7 version:
+
+```bash
+docker run -d --name=rutorrent \
+-v /share/Container/rutorrent/config:/config \
+-v /share/Container/rutorrent/downloads:/downloads \
+-e PGID=0 -e PUID=0 -e TZ=Europe/Madrid \
+-p 9443:443 \
+-p 51415-51415:51415-51415 \
+romancin/rutorrent:0.9.7
 ```
 
 For rtorrent 0.9.6 version:
@@ -103,6 +115,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 ## Changelog
+v2.1.0 (10/08/2019): Fixed cloudflare plugin. New 0.9.7 branch. Master branch updated to rtorrent/libtorrent 0.9.8/0.13.8.
 
 v2.0.1 (29/04/2019): Added GeoIP2 plugin.
 
