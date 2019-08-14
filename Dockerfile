@@ -161,7 +161,7 @@ svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c && \
 cd /tmp/xmlrpc-c && \
 ./configure --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
 # compile libtorrent
-apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main -U cppunit-dev==1.13.2-r1 cppunit==1.13.2-r1 && \
+#apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main -U cppunit-dev==1.13.2-r1 cppunit==1.13.2-r1 && \
 cd /tmp && \
 mkdir libtorrent && \
 cd libtorrent && \
@@ -200,7 +200,7 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
 # cleanup
  apk del --purge \
         build-dependencies && \
- apk del -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main cppunit-dev && \
+ #apk del -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main cppunit-dev && \
  rm -rf \
         /tmp/*
 # add local files
