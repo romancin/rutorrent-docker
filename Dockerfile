@@ -10,8 +10,8 @@ LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
 ARG MEDIAINF_VER="19.07"
-ARG RTORRENT_VER="v0.9.8"
-ARG LIBTORRENT_VER="v0.13.8"
+ARG RTORRENT_VER="v0.9.7"
+ARG LIBTORRENT_VER="v0.13.7"
 ARG CURL_VER="7.65.3"
 ARG GEOIP_VER="1.1.1"
 
@@ -86,7 +86,9 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         curl-dev \
         libressl-dev \
         libffi-dev \
-        python3-dev && \
+        python3-dev \
+        go \
+        musl-dev && \
 # compile curl to fix ssl for rtorrent
 cd /tmp && \
 mkdir curl && \
@@ -197,6 +199,9 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
         ./CLI_Compile.sh && \
  cd /tmp/mediainfo/MediaInfo/Project/GNU/CLI && \
         make install && \
+# compile and install rtelegram
+GOPATH=/usr go get -u github.com/pyed/rtelegram && \
+
 # cleanup
  apk del --purge \
         build-dependencies && \
