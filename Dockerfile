@@ -86,7 +86,9 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         curl-dev \
         libressl-dev \
         libffi-dev \
-        python3-dev && \
+        python3-dev \
+        go \
+        musl-dev && \
 # compile curl to fix ssl for rtorrent
 cd /tmp && \
 mkdir curl && \
@@ -197,6 +199,9 @@ wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | 
         ./CLI_Compile.sh && \
  cd /tmp/mediainfo/MediaInfo/Project/GNU/CLI && \
         make install && \
+# compile and install rtelegram
+GOPATH=/usr go get -u github.com/pyed/rtelegram && \
+
 # cleanup
  apk del --purge \
         build-dependencies && \
