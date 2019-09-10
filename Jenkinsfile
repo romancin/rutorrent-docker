@@ -8,7 +8,7 @@ pipeline {
     stage('Cloning Git Repository') {
       steps {
         git url: 'https://github.com/romancin/rutorrent-docker.git',
-            branch: 'develop'
+            branch: 'master'
       }
     }
     stage('Building image and pushing it to the registry') {
@@ -17,9 +17,11 @@ pipeline {
                     def gitbranch = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
                     def version = readFile('VERSION')
                     def versions = version.split('\\.')
-                    def major = gitbranch + '-' + versions[0]
-                    def minor = gitbranch + '-' + versions[0] + '.' + versions[1]
-                    def patch = gitbranch + '-' + version.trim()
+                  
+                    def major = '0.9.8-' + versions[0]
+                    def minor = '0.9.8-' + versions[0] + '.' + versions[1]
+                    def patch = '0.9.8-' + version.trim()
+
                     docker.withRegistry('', registryCredential) {
                         def image = docker.build registry + ":" + gitbranch
                         image.push()
