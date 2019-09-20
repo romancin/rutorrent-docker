@@ -1,4 +1,6 @@
 ARG BASEIMAGE_VERSION="3.10"
+ARG RTORRENT_VER="v0.9.8"
+ARG LIBTORRENT_VER="v0.13.8"
 FROM lsiobase/alpine:$BASEIMAGE_VERSION
 
 MAINTAINER romancin
@@ -11,8 +13,6 @@ LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
 ARG MEDIAINF_VER="19.07"
-ARG RTORRENT_VER="v0.9.8"
-ARG LIBTORRENT_VER="v0.13.8"
 ARG CURL_VER="7.65.3"
 ARG GEOIP_VER="1.1.1"
 

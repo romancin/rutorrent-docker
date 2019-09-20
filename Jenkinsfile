@@ -94,7 +94,7 @@ pipeline {
           def patch = gitbranch + '-' + version.trim()
           docker.withRegistry('', registryCredential) {
             //def image = docker.build registry + ":" + gitbranch
-            def image = docker.build("$registry:$gitbranch")
+            def image = docker.build("$registry:$gitbranch",  "--build-arg BASEIMAGE_VERSION=3.10 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8")
             image.push()
             image.push(major)
             image.push(minor)
