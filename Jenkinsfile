@@ -48,7 +48,7 @@ pipeline {
           def patch = gitbranch + '-' + version.trim()
           docker.withRegistry('', registryCredential) {
             //def image = docker.build registry + ":" + gitbranch
-            def image = docker.build("$registry:$gitbranch", "--build-arg BASEIMAGE_VERSION=3.8 --build-arg RTORRENT_VER=v0.9.6 --build-arg LIBTORRENT_VER=v0.13.6")
+            def image = docker.build("$registry:$gitbranch", "--build-arg BASEIMAGE_VERSION=3.8 --build-arg RTORRENT_VER=v0.9.6 --build-arg LIBTORRENT_VER=v0.13.6 -f Dockerfile .")
             image.push()
             image.push(major)
             image.push(minor)
@@ -71,7 +71,7 @@ pipeline {
           def patch = gitbranch + '-' + version.trim()
           docker.withRegistry('', registryCredential) {
             //def image = docker.build registry + ":" + gitbranch
-            def image = docker.build("$registry:$gitbranch", "--build-arg BASEIMAGE_VERSION=3.8 --build-arg RTORRENT_VER=v0.9.7 --build-arg LIBTORRENT_VER=v0.13.7")
+            def image = docker.build("$registry:$gitbranch", "--build-arg BASEIMAGE_VERSION=3.8 --build-arg RTORRENT_VER=v0.9.7 --build-arg LIBTORRENT_VER=v0.13.7 -f Dockerfile .")
             image.push()
             image.push(major)
             image.push(minor)
@@ -94,7 +94,7 @@ pipeline {
           def patch = gitbranch + '-' + version.trim()
           docker.withRegistry('', registryCredential) {
             //def image = docker.build registry + ":" + gitbranch
-            def image = docker.build("$registry:$gitbranch",  "--build-arg BASEIMAGE_VERSION=3.10 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8")
+            def image = docker.build("$registry:$gitbranch",  "--build-arg BASEIMAGE_VERSION=3.10 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8 -f Dockerfile .")
             image.push()
             image.push(major)
             image.push(minor)
@@ -116,7 +116,7 @@ pipeline {
           def patch = '0.9.8-' + version.trim()
           docker.withRegistry('', registryCredential) {
             //def image = docker.build registry + ":" + gitbranch
-            def image = docker.build("$registry:latest", "--build-arg BASEIMAGE_VERSION=3.10 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8")
+            def image = docker.build("$registry:latest", "--build-arg BASEIMAGE_VERSION=3.10 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8 -f Dockerfile .")
             image.push()
             image.push(major)
             image.push(minor)
@@ -136,4 +136,4 @@ pipeline {
         success {
             telegramSend '[Jenkins] - Pipeline CI-rutorrent-docker $BUILD_URL finalizado con estado :: $BUILD_STATUS'    
         }
-    }
+ }
