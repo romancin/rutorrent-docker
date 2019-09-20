@@ -20,6 +20,7 @@ pipeline {
           def gitbranch = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
           def version = readFile('VERSION')
           def versions = version.split('\\.')
+          def base = gitbranch
           def major = gitbranch + '-' + versions[0]
           def minor = gitbranch + '-' + versions[0] + '.' + versions[1]
           def patch = gitbranch + '-' + version.trim()
@@ -27,6 +28,7 @@ pipeline {
             //def image = docker.build registry + ":" + gitbranch
             def image = docker.build("$registry:$gitbranch", "--build-arg BASEIMAGE_VERSION=3.8 --build-arg RTORRENT_VER=v0.9.4 --build-arg LIBTORRENT_VER=v0.13.4")
             image.push()
+            image.push(base)
             image.push(major)
             image.push(minor)
             image.push(patch)
@@ -43,6 +45,7 @@ pipeline {
           def gitbranch = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
           def version = readFile('VERSION')
           def versions = version.split('\\.')
+          def base = gitbranch
           def major = gitbranch + '-' + versions[0]
           def minor = gitbranch + '-' + versions[0] + '.' + versions[1]
           def patch = gitbranch + '-' + version.trim()
@@ -50,6 +53,7 @@ pipeline {
             //def image = docker.build registry + ":" + gitbranch
             def image = docker.build("$registry:$gitbranch", "--build-arg BASEIMAGE_VERSION=3.8 --build-arg RTORRENT_VER=v0.9.6 --build-arg LIBTORRENT_VER=v0.13.6 -f Dockerfile .")
             image.push()
+            image.push(base)
             image.push(major)
             image.push(minor)
             image.push(patch)
@@ -66,6 +70,7 @@ pipeline {
           def gitbranch = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
           def version = readFile('VERSION')
           def versions = version.split('\\.')
+          def base = gitbranch
           def major = gitbranch + '-' + versions[0]
           def minor = gitbranch + '-' + versions[0] + '.' + versions[1]
           def patch = gitbranch + '-' + version.trim()
@@ -73,6 +78,7 @@ pipeline {
             //def image = docker.build registry + ":" + gitbranch
             def image = docker.build("$registry:$gitbranch", "--build-arg BASEIMAGE_VERSION=3.8 --build-arg RTORRENT_VER=v0.9.7 --build-arg LIBTORRENT_VER=v0.13.7 -f Dockerfile .")
             image.push()
+            image.push(base)
             image.push(major)
             image.push(minor)
             image.push(patch)
@@ -89,6 +95,7 @@ pipeline {
           def gitbranch = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
           def version = readFile('VERSION')
           def versions = version.split('\\.')
+          def base = gitbranch
           def major = gitbranch + '-' + versions[0]
           def minor = gitbranch + '-' + versions[0] + '.' + versions[1]
           def patch = gitbranch + '-' + version.trim()
@@ -96,6 +103,7 @@ pipeline {
             //def image = docker.build registry + ":" + gitbranch
             def image = docker.build("$registry:$gitbranch",  "--build-arg BASEIMAGE_VERSION=3.10 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8 -f Dockerfile .")
             image.push()
+            image.push(base)
             image.push(major)
             image.push(minor)
             image.push(patch)
@@ -111,6 +119,7 @@ pipeline {
         script {
           def version = readFile('VERSION')
           def versions = version.split('\\.')
+          def base = '0.9.8'
           def major = '0.9.8-' + versions[0]
           def minor = '0.9.8-' + versions[0] + '.' + versions[1]
           def patch = '0.9.8-' + version.trim()
@@ -118,6 +127,7 @@ pipeline {
             //def image = docker.build registry + ":" + gitbranch
             def image = docker.build("$registry:latest", "--build-arg BASEIMAGE_VERSION=3.10 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8 -f Dockerfile .")
             image.push()
+            image.push(base)
             image.push(major)
             image.push(minor)
             image.push(patch)
