@@ -1,6 +1,4 @@
 ARG BASEIMAGE_VERSION
-ARG RTORRENT_VER
-ARG LIBTORRENT_VER
 FROM lsiobase/alpine:$BASEIMAGE_VERSION
 
 MAINTAINER romancin
@@ -15,6 +13,8 @@ LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 ARG MEDIAINF_VER="19.07"
 ARG CURL_VER="7.65.3"
 ARG GEOIP_VER="1.1.1"
+ARG RTORRENT_VER
+ARG LIBTORRENT_VER
 
 # set env
 ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
@@ -168,6 +168,7 @@ echo "DEBUG: RTORRENT/LIBTORRENT VERSIONS ARE: $RTORRENT_VER/$LIBTORRENT_VER" &&
 cd /tmp && \
 mkdir libtorrent && \
 cd libtorrent && \
+https://github.com/rakshasa/libtorrent/archive/v0.13.8.zip
 wget -qO- https://github.com/rakshasa/libtorrent/archive/${LIBTORRENT_VER}.tar.gz | tar xz --strip 1 && \
 ./autogen.sh && ./configure && make -j ${NB_CORES} && make install && \
 # compile rtorrent
