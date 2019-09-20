@@ -163,10 +163,10 @@ svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c && \
 cd /tmp/xmlrpc-c && \
 ./configure --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
 # compile libtorrent
-if [ $RTORRENT_VER == "v0.9.4" ] || [ $RTORRENT_VER == "v0.9.6" ]
-then
+if [ $RTORRENT_VER == "v0.9.4" ] || [ $RTORRENT_VER == "v0.9.6" ] && \
+then && \
   apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main -U cppunit-dev==1.13.2-r1 cppunit==1.13.2-r1 && \
-fi
+fi && \
 cd /tmp && \
 mkdir libtorrent && \
 cd libtorrent && \
@@ -208,10 +208,10 @@ GOPATH=/usr go get -u github.com/pyed/rtelegram && \
 # cleanup
 apk del --purge \
         build-dependencies && \
-if [ $RTORRENT_VER == "v0.9.4" ] || [ $RTORRENT_VER == "v0.9.6" ]
-then
+if [ $RTORRENT_VER == "v0.9.4" ] || [ $RTORRENT_VER == "v0.9.6" ] && \
+then && \
   apk del -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main cppunit-dev && \
-fi
+fi && \
 rm -rf \
         /tmp/*
 # add local files
