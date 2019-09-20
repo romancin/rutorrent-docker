@@ -173,7 +173,7 @@ schedule2 = monitor_diskspace, 15, 60, ((close_low_diskspace,1000M))
 #method.set_key = event.download.finished,move_complete,"d.move_to_complete=$d.data_path=,$d.custom1="
 
 # Commit session data
-schedule2 = session_save,240,300,session_save=
+schedule2 = session_save, 240, 300, ((session.save))
 
 # Erase data when torrent deleted (no need erasedata plugin on ruTorrent)
 #method.set_key = event.download.erased,delete_erased,"execute=rm,-rf,--,$d.data_path="
