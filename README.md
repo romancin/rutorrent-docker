@@ -119,7 +119,7 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 ## Changelog
-v2.2.0 (09/09/2019): Unified Dockerfile and Jenkinsfile for easier image code management
+v2.2.1 (20/09/2019): Unified Dockerfile and Jenkinsfile for easier image code management
 
 v2.2.0 (09/09/2019): Added [rtelegram](https://github.com/pyed/rtelegram). It allows to control rtorrent from Telegram.
 
