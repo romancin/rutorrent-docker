@@ -15,12 +15,16 @@ ARG CURL_VER="7.65.3"
 ARG GEOIP_VER="1.1.1"
 ARG RTORRENT_VER
 ARG LIBTORRENT_VER
+ARG RT_TOKEN="DISABLED"
+ARG RT_MASTERS="DISABLED"
+
 # set env
 ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 ENV LD_LIBRARY_PATH=/usr/local/lib
 ENV CONTEXT_PATH=/
 ENV CREATE_SUBDIR_BY_TRACKERS="no"
-    
+
+# run commands
 RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
  apk add --no-cache \
 	bash-completion \
@@ -207,9 +211,11 @@ apk del --purge \
 if [ "$RTORRENT_VER" == "v0.9.4" ] || [ "$RTORRENT_VER" == "v0.9.6" ]; then apk del -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main cppunit-dev; fi && \
 rm -rf \
         /tmp/*
+
 # add local files
 COPY root/ /
 COPY VERSION /
+
 # ports and volumes
 EXPOSE 443 51415
 VOLUME /config /downloads
