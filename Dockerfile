@@ -122,7 +122,6 @@ mv ruTorrent-plugins/* . && \
 rm -rf ruTorrent-plugins && \
 apk add --no-cache cksfv && \
 git clone https://github.com/nelu/rutorrent-filemanager.git filemanager && \
-git clone https://github.com/nelu/rutorrent-filemanager-share.git filemanager-share && \
 git clone https://github.com/nelu/rutorrent-filemanager-media  filemanager-media && \
 cd /usr/share/webapps/rutorrent/ && \
 chmod 755 plugins/filemanager/scripts/* && \
