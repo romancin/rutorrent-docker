@@ -120,9 +120,9 @@ git clone https://github.com/AceP1983/ruTorrent-plugins  && \
 mv ruTorrent-plugins/* . && \
 rm -rf ruTorrent-plugins && \
 apk add --no-cache cksfv && \
-git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git && \
-mv rutorrent-thirdparty-plugins/* . && \
-rm -rf rutorrent-thirdparty-plugins && \
+git clone https://github.com/nelu/rutorrent-filemanager.git filemanager && \
+git clone https://github.com/nelu/rutorrent-filemanager-share.git filemanager-share && \
+git clone https://github.com/nelu/rutorrent-filemanager-media  filemanager-media && \
 cd /usr/share/webapps/rutorrent/ && \
 chmod 755 plugins/filemanager/scripts/* && \
 rm -rf plugins/fileupload && \
