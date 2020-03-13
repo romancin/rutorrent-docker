@@ -20,7 +20,7 @@ then
   -subj "/C=XX/ST=XXXX/L=XXXX/O=XXXX/CN=localhost" \
   -keyout "/config/nginx/key.pem" \
   -out "/config/nginx/cert.pem" \
-  -days 3650 -nodes -sha256
+  -days 825 -nodes -sha256
 fi
 
 if [ ! -e "/config/nginx/conf.d/basic.conf" ] || [ ! -e "/config/nginx/conf.d/ssl.conf" ]

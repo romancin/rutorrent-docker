@@ -10,11 +10,12 @@ ARG BUILD_CORES
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
-ARG MEDIAINF_VER="19.07"
-ARG CURL_VER="7.65.3"
+ARG MEDIAINF_VER="19.09"
+ARG CURL_VER="7.69.1"
 ARG GEOIP_VER="1.1.1"
 ARG RTORRENT_VER
 ARG LIBTORRENT_VER
+ARG MAXMIND_LICENSE_KEY
 
 # set env
 ENV PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
@@ -65,7 +66,9 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         php7-ctype \
         php7-dev \
         php7-phar \
-	 php7-zip \
+	php7-zip \
+        php7-openssl \
+        php7-bcmath \
         python \
         python3 && \
 # install build packages
@@ -120,9 +123,8 @@ git clone https://github.com/AceP1983/ruTorrent-plugins  && \
 mv ruTorrent-plugins/* . && \
 rm -rf ruTorrent-plugins && \
 apk add --no-cache cksfv && \
-git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git && \
-mv rutorrent-thirdparty-plugins/* . && \
-rm -rf rutorrent-thirdparty-plugins && \
+git clone https://github.com/nelu/rutorrent-filemanager.git filemanager && \
+git clone https://github.com/nelu/rutorrent-filemanager-media  filemanager-media && \
 cd /usr/share/webapps/rutorrent/ && \
 chmod 755 plugins/filemanager/scripts/* && \
 rm -rf plugins/fileupload && \
@@ -137,15 +139,15 @@ cd /usr/share/webapps/rutorrent/plugins/ && \
 git clone https://github.com/Gyran/rutorrent-pausewebui pausewebui && \
 git clone https://github.com/Gyran/rutorrent-ratiocolor ratiocolor && \
 sed -i 's/changeWhat = "cell-background";/changeWhat = "font";/g' /usr/share/webapps/rutorrent/plugins/ratiocolor/init.js && \
-git clone https://github.com/Gyran/rutorrent-instantsearch instantsearch && \
+git clone https://github.com/Micdu70/rutorrent-instantsearch instantsearch && \
 git clone https://github.com/xombiemp/rutorrentMobile && \
 git clone https://github.com/dioltas/AddZip && \
 git clone https://github.com/Micdu70/geoip2-rutorrent geoip2 && \
 rm -rf geoip && \
 mkdir -p /usr/share/GeoIP && \
 cd /usr/share/GeoIP && \
-wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz && \
-wget https://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz && \
+wget -O GeoLite2-City.tar.gz "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=$MAXMIND_LICENSE_KEY&suffix=tar.gz" && \
+wget -O GeoLite2-Country.tar.gz  "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&license_key=$MAXMIND_LICENSE_KEY&suffix=tar.gz" && \
 tar xzf GeoLite2-City.tar.gz && \
 tar xzf GeoLite2-Country.tar.gz && \
 rm -f *.tar.gz && \
@@ -165,7 +167,6 @@ cd /tmp/xmlrpc-c && \
 ./configure --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
 # compile libtorrent
 if [ "$RTORRENT_VER" == "v0.9.4" ] || [ "$RTORRENT_VER" == "v0.9.6" ]; then apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main -U cppunit-dev==1.13.2-r1 cppunit==1.13.2-r1; fi && \
-echo "DEBUG: RTORRENT/LIBTORRENT VERSIONS ARE: $RTORRENT_VER/$LIBTORRENT_VER" && \
 cd /tmp && \
 mkdir libtorrent && \
 cd libtorrent && \
