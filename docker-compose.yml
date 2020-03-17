@@ -7,19 +7,17 @@ services:
         - default
       tty: true
       volumes:
-        - /share/Container/rutorrent-develop:/config
-        - /share/Container/rutorrent-develop/downloads:/downloads
+        - /share/Container/rutorrent:/config
+        - /share/Container/rutorrent/downloads:/downloads
       environment:
         - PUID=0
         - PGID=0
         - TZ=Europe/Madrid
         - CREATE_SUBDIR_BY_TRACKERS=NO
+        - SSL_ENABLED=NO
         - RT_TOKEN=
         - RT_MASTERS=
       ports:
-        - "7443:443"
+        - "8080:80"
+       #- "7443:443"
         - "32316:52316"
-networks:
-  default:
-    external:
-      name: main_network
