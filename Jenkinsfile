@@ -141,7 +141,7 @@ pipeline {
   }
   post {
         success {
-            telegramSend '[Jenkins] - Pipeline CI-rutorrent-docker $BUILD_URL finalizado con estado :: $BUILD_STATUS'    
+            telegramSend(message: '[Jenkins] - Pipeline CI-rutorrent-docker $BUILD_URL finalizado con estado :: $BUILD_STATUS', chatId: -395961814)
         }
   }
  }
