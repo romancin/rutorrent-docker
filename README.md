@@ -121,6 +121,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 ## Changelog
+v4.0.3 (24/05/2020): Update image to current packages
+
 v4.0.2 (31/03/2020): Corrected rutorrentMobile plugin installation (Thanks @jorritsmit!!)
 
 v4.0.0 (16/03/2020): Added variable for optional SSL configuration.
