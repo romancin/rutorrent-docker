@@ -121,6 +121,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 ## Changelog
+v4.0.4 (04/07/2020): Update image to Alpine 3.11 and current packages
+
 v4.0.3 (24/05/2020): Update image to current packages
 
 v4.0.2 (31/03/2020): Corrected rutorrentMobile plugin installation (Thanks @jorritsmit!!)
