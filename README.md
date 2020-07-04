@@ -37,7 +37,7 @@ Tested and working on Synology and QNAP, but should work on any x86_64 devices.
 
 In order to change rutorrent web access password execute this inside container: 
 - `sh -c "echo -n 'admin:' > /config/nginx/.htpasswd"`
-- `sh -c "openssl passwd -apr1 >> /config/nginx/.htpasswd"`
+- `sh -c "libressl passwd -apr1 >> /config/nginx/.htpasswd"`
 
 **IMPORTANT** 
 - Since v1.0.0 version, rtorrent.rc file has changed completely, so rename it before starting with the new image the first time. After first run, add the changes you need to this config file. It is on <YOUR_MAPPED_FOLDER>/rtorrent directory.
@@ -121,6 +121,12 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 ## Changelog
+v4.0.4 (04/07/2020): Update image to Alpine 3.11 and current packages
+
+v4.0.3 (24/05/2020): Update image to current packages
+
+v4.0.2 (31/03/2020): Corrected rutorrentMobile plugin installation (Thanks @jorritsmit!!)
+
 v4.0.0 (16/03/2020): Added variable for optional SSL configuration.
 
 v3.0.0 (13/03/2020): Updated to Alpine 3.11 (rtorrent 0.9.8 only). Changed to new maxmind database.

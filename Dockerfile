@@ -10,8 +10,8 @@ ARG BUILD_CORES
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
-ARG MEDIAINF_VER="19.09"
-ARG CURL_VER="7.69.1"
+ARG MEDIAINF_VER="20.03"
+ARG CURL_VER="7.71.0"
 ARG GEOIP_VER="1.1.1"
 ARG RTORRENT_VER
 ARG LIBTORRENT_VER
@@ -141,7 +141,8 @@ git clone https://github.com/Gyran/rutorrent-pausewebui pausewebui && \
 git clone https://github.com/Gyran/rutorrent-ratiocolor ratiocolor && \
 sed -i 's/changeWhat = "cell-background";/changeWhat = "font";/g' /usr/share/webapps/rutorrent/plugins/ratiocolor/init.js && \
 git clone https://github.com/Micdu70/rutorrent-instantsearch instantsearch && \
-git clone https://github.com/xombiemp/rutorrentMobile && \
+git clone https://github.com/xombiemp/rutorrentMobile mobile && \
+rm -rf ipad && \
 git clone https://github.com/dioltas/AddZip && \
 git clone https://github.com/Micdu70/geoip2-rutorrent geoip2 && \
 rm -rf geoip && \
