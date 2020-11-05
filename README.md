@@ -121,6 +121,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 ## Changelog
+v4.2.0 (05/11/2020): Added Discord plugin installation, changed XMLRCP-C repository to the mirror in Github and change Flood to currently most active fork. Fixed PluginCheckPort plugin. You will no longer see 'Bad response from server: (500 [error,initportcheck])' error message in ruTorrent.
+
 v4.0.4 (04/07/2020): Update image to Alpine 3.11 and current packages
 
 v4.0.3 (24/05/2020): Update image to current packages
