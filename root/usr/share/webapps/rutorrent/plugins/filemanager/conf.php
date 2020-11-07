@@ -15,9 +15,9 @@ $config['textExtensions'] = 'txt|nfo|sfv|xml|html';
 // archive mangling, see archiver man page before editing
 // archive.fileExt -> config
 $config['archive']['type'] = [
-    'rar' => [  'bin' =>'rar',
-                'compression' => range(0, 5),
-    ],
+//    'rar' => [  'bin' =>'rar',
+//                'compression' => range(0, 5),
+//    ],
     'zip' => [
         'bin' =>'unzip',
         'compression' => ['-0', '-1', '-9'],
