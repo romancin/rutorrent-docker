@@ -40,6 +40,7 @@ In order to change rutorrent web access password execute this inside container:
 - `sh -c "libressl passwd -apr1 >> /config/nginx/.htpasswd"`
 
 **IMPORTANT** 
+- Old rtorrent versions are now deprecated since version 4.2.0 of the image. The older ones should remain available for use until docker hub deletes them.
 - Since v1.0.0 version, rtorrent.rc file has changed completely, so rename it before starting with the new image the first time. After first run, add the changes you need to this config file. It is on <YOUR_MAPPED_FOLDER>/rtorrent directory.
 - Since v2.0.0 version, config.php of rutorrent has added new utilities, so rename it before starting with the new image the first time. After first run, add the changes you need to this config file. It is on <YOUR_MAPPED_FOLDER>/rutorrent/settings directory.
 
@@ -57,7 +58,7 @@ docker run -d --name=rutorrent \
 romancin/rutorrent:latest
 ```
 
-For rtorrent 0.9.7 version:
+For rtorrent 0.9.7 version **DEPRECATED**:
 
 ```bash
 docker run -d --name=rutorrent \
@@ -69,7 +70,7 @@ docker run -d --name=rutorrent \
 romancin/rutorrent:0.9.7
 ```
 
-For rtorrent 0.9.6 version:
+For rtorrent 0.9.6 version **DEPRECATED**:
 
 ```bash
 docker run -d --name=rutorrent \
@@ -81,7 +82,7 @@ docker run -d --name=rutorrent \
 romancin/rutorrent:0.9.6
 ```
 
-For rtorrent 0.9.4 version:
+For rtorrent 0.9.4 version **DEPRECATED**:
 
 ```bash
 docker run -d --name=rutorrent \
@@ -121,6 +122,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 ## Changelog
+v5.0.0 (07/11/2020): Now old rtorrent versions are deprecated and the image updated to Alpine 3.12.
+
 v4.2.0 (05/11/2020): Added Discord plugin installation, changed XMLRCP-C repository to the mirror in Github and change Flood to currently most active fork. Fixed PluginCheckPort plugin. You will no longer see 'Bad response from server: (500 [error,initportcheck])' error message in ruTorrent.
 
 v4.0.4 (04/07/2020): Update image to Alpine 3.11 and current packages
