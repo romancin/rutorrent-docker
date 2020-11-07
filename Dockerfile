@@ -72,8 +72,9 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         php7-bcmath \
         php7-session \
         php7-curl \
-        python \
-        python3 && \
+        python2 \
+        python3 \
+        py3-pip && \
 # install build packages
  apk add --no-cache --virtual=build-dependencies \
         autoconf \
