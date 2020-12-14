@@ -114,7 +114,7 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
         /defaults/rutorrent-conf/ && \
  rm -rf \
         /defaults/rutorrent-conf/users && \
- pip3 install CfScrape \
+ pip3 install --no-cache-dir CfScrape \
               cloudscraper && \
 # install webui extras
 # QuickBox Theme
