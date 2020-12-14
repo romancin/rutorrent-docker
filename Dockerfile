@@ -108,7 +108,7 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
  mkdir -p \
         /usr/share/webapps/rutorrent \
         /defaults/rutorrent-conf && \
- git clone https://github.com/Novik/ruTorrent.git \
+ git clone --depth 1 https://github.com/Novik/ruTorrent.git \
         /usr/share/webapps/rutorrent/ && \
  mv /usr/share/webapps/rutorrent/conf/* \
         /defaults/rutorrent-conf/ && \
@@ -118,39 +118,39 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
               cloudscraper && \
 # install webui extras
 # QuickBox Theme
-git clone https://github.com/QuickBox/club-QuickBox /usr/share/webapps/rutorrent/plugins/theme/themes/club-QuickBox && \
-git clone https://github.com/Phlooo/ruTorrent-MaterialDesign /usr/share/webapps/rutorrent/plugins/theme/themes/MaterialDesign && \
+git clone --depth 1 https://github.com/QuickBox/club-QuickBox /usr/share/webapps/rutorrent/plugins/theme/themes/club-QuickBox && \
+git clone --depth 1 https://github.com/Phlooo/ruTorrent-MaterialDesign /usr/share/webapps/rutorrent/plugins/theme/themes/MaterialDesign && \
 # ruTorrent plugins
 cd /usr/share/webapps/rutorrent/plugins/ && \
-git clone https://github.com/orobardet/rutorrent-force_save_session force_save_session && \
-git clone https://github.com/AceP1983/ruTorrent-plugins  && \
+git clone --depth 1 https://github.com/orobardet/rutorrent-force_save_session force_save_session && \
+git clone --depth 1 https://github.com/AceP1983/ruTorrent-plugins  && \
 mv ruTorrent-plugins/* . && \
 rm -rf ruTorrent-plugins && \
 apk add --no-cache cksfv && \
-git clone https://github.com/nelu/rutorrent-filemanager.git filemanager && \
-git clone https://github.com/nelu/rutorrent-filemanager-media  filemanager-media && \
+git clone --depth 1 https://github.com/nelu/rutorrent-filemanager.git filemanager && \
+git clone --depth 1 https://github.com/nelu/rutorrent-filemanager-media  filemanager-media && \
 cd /usr/share/webapps/rutorrent/ && \
 chmod 755 plugins/filemanager/scripts/* && \
 rm -rf plugins/fileupload && \
 cd /tmp && \
-git clone https://github.com/mcrapet/plowshare.git && \
+git clone --depth 1 https://github.com/mcrapet/plowshare.git && \
 cd plowshare/ && \
 make install && \
 cd .. && \
 rm -rf plowshare* && \
 apk add --no-cache unzip bzip2 && \
 cd /usr/share/webapps/rutorrent/plugins/ && \
-git clone https://github.com/Gyran/rutorrent-pausewebui pausewebui && \
-git clone https://github.com/Gyran/rutorrent-ratiocolor ratiocolor && \
+git clone --depth 1 https://github.com/Gyran/rutorrent-pausewebui pausewebui && \
+git clone --depth 1 https://github.com/Gyran/rutorrent-ratiocolor ratiocolor && \
 sed -i 's/changeWhat = "cell-background";/changeWhat = "font";/g' /usr/share/webapps/rutorrent/plugins/ratiocolor/init.js && \
-git clone https://github.com/Micdu70/rutorrent-instantsearch instantsearch && \
-git clone https://github.com/xombiemp/rutorrentMobile mobile && \
+git clone --depth 1 https://github.com/Micdu70/rutorrent-instantsearch instantsearch && \
+git clone --depth 1 https://github.com/xombiemp/rutorrentMobile mobile && \
 rm -rf ipad && \
-git clone https://github.com/dioltas/AddZip && \
-git clone https://github.com/radonthetyrant/rutorrent-discord  && \
+git clone --depth 1 https://github.com/dioltas/AddZip && \
+git clone --depth 1 https://github.com/radonthetyrant/rutorrent-discord  && \
 mv rutorrent-discord/* . && \
 rm -rf rutorrent-discord && \
-git clone https://github.com/Micdu70/geoip2-rutorrent geoip2 && \
+git clone --depth 1 https://github.com/Micdu70/geoip2-rutorrent geoip2 && \
 rm -rf geoip && \
 mkdir -p /usr/share/GeoIP && \
 cd /usr/share/GeoIP && \
@@ -170,7 +170,7 @@ echo ";extension=geoip.so" >> /etc/php7/php.ini && \
         cpanm HTML::Entities XML::LibXML JSON JSON::XS && \
 # compile xmlrpc-c
 cd /tmp && \
-git clone https://github.com/mirror/xmlrpc-c.git && \
+git clone --depth 1 https://github.com/mirror/xmlrpc-c.git && \
 cd /tmp/xmlrpc-c/stable && \
 ./configure --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
 # compile libtorrent
