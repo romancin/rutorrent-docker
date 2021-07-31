@@ -2,9 +2,11 @@
 
 A repository for creating a docker container including rtorrent with rutorrent.
 
-[![](https://images.microbadger.com/badges/version/romancin/rutorrent.svg)](https://microbadger.com/images/romancin/rutorrent "Docker image version")
-[![](https://images.microbadger.com/badges/image/romancin/rutorrent.svg)](https://microbadger.com/images/romancin/rutorrent "Docker image size")
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X2CT2SWQCP74U)
+![docker pulls](https://img.shields.io/docker/pulls/romancin/rutorrent.svg) ![docker stars](https://img.shields.io/docker/stars/romancin/rutorrent.svg) [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X2CT2SWQCP74U)
+
+Latest version:
+
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/romancin/rutorrent/0.9.8) ![docker size](https://img.shields.io/docker/image-size/romancin/rutorrent/0.9.8) 
 
 You can invite me a beer if you want ;) 
 
@@ -122,6 +124,8 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 ## Changelog
+v6.0.0 (31/07/2021): Updated base image to Alpine 3.14 and applications to current versionsÂ
+
 v5.0.1 (07/11/2020): Disabled rar in filemanager plugin because it is not available in Alpine.
 
 v5.0.0 (07/11/2020): Now old rtorrent versions are deprecated and the image updated to Alpine 3.12.
