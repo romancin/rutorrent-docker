@@ -7,7 +7,7 @@ on:
       - 'develop'
 
 jobs:
-  docker:
+  docker-build-image:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -58,3 +58,24 @@ jobs:
             LIBTORRENT_VER=v0.13.8 
             MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }}
         if: github.ref == 'refs/heads/develop'
+
+  update-docherhub-readme:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      if: github.ref == 'refs/heads/master'
+    - name: Set variables
+        run: |
+          echo "USER=romancin" >> $GITHUB_ENV
+          echo "REPO=rutorrent" >> $GITHUB_ENV
+        working-directory: ./
+      if: github.ref == 'refs/heads/master'
+    - name: Update Docker Hub README
+      uses: peter-evans/dockerhub-description@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        repository: ${{ env.USER }}/${{ env.REPO }}
+        #short-description: ${{ github.event.repository.description }}
+      if: github.ref == 'refs/heads/master'
