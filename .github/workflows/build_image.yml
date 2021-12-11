@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v2      
         with:
           context: .
-          file: ${{ env.BASE_DIR }}/Dockerfile
+          file: ./Dockerfile
           push: true
           tags: |
             ${{ env.USER }}/${{ env.REPO }}:0.9.8-${{ env.VERSION }}
@@ -47,7 +47,7 @@ jobs:
         uses: docker/build-push-action@v2      
         with:
           context: .
-          file: ${{ env.BASE_DIR }}/Dockerfile
+          file: ./Dockerfile
           push: true
           tags: |
             ${{ env.USER }}/${{ env.REPO }}:develop-${{ env.VERSION }}
