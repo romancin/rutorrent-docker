@@ -66,10 +66,10 @@ jobs:
         uses: actions/checkout@v2
         if: github.ref == 'refs/heads/master'
       - name: Set variables
-          run: |
-            echo "USER=romancin" >> $GITHUB_ENV
-            echo "REPO=rutorrent" >> $GITHUB_ENV
-          working-directory: ./
+        run: |
+          echo "USER=romancin" >> $GITHUB_ENV
+          echo "REPO=rutorrent" >> $GITHUB_ENV
+        working-directory: ./
         if: github.ref == 'refs/heads/master'
       - name: Update Docker Hub README
         uses: peter-evans/dockerhub-description@v2
