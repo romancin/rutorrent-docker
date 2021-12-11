@@ -33,8 +33,8 @@ jobs:
           load: true
           push: true
           tags: |
-          ${{ env.USER }}/${{ env.REPO }}:0.9.8-${{ env.VERSION }}
-          ${{ env.USER }}/${{ env.REPO }}:latest
+            ${{ env.USER }}/${{ env.REPO }}:0.9.8-${{ env.VERSION }}
+            ${{ env.USER }}/${{ env.REPO }}:latest
         if: github.ref == 'refs/heads/develop'
       - name: Build Docker Image (develop branch)
         uses: docker/build-push-action@v2      
@@ -44,6 +44,6 @@ jobs:
           load: true
           push: true
           tags: |
-          ${{ env.USER }}/${{ env.REPO }}:develop-${{ env.VERSION }}
-          ${{ env.USER }}/${{ env.REPO }}:develop
+            ${{ env.USER }}/${{ env.REPO }}:develop-${{ env.VERSION }}
+            ${{ env.USER }}/${{ env.REPO }}:develop
         if: github.ref == 'refs/heads/develop'
