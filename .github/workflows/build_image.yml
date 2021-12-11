@@ -37,11 +37,11 @@ jobs:
           tags: |
             ${{ env.USER }}/${{ env.REPO }}:0.9.8-${{ env.VERSION }}
             ${{ env.USER }}/${{ env.REPO }}:latest
-          build-args: 
+          build-args: |
             BASEIMAGE_VERSION=3.14 
             RTORRENT_VER=v0.9.8 
             LIBTORRENT_VER=v0.13.8 
-            MAXMIND_LICENSE_KEY=${{ env.MAXMIND_LICENSE_KEY }}
+            MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }}
         if: github.ref == 'refs/heads/master'
       - name: Build Docker Image (develop branch)
         uses: docker/build-push-action@v2      
@@ -52,9 +52,9 @@ jobs:
           tags: |
             ${{ env.USER }}/${{ env.REPO }}:develop-${{ env.VERSION }}
             ${{ env.USER }}/${{ env.REPO }}:develop
-          build-args: 
+          build-args: |
             BASEIMAGE_VERSION=3.14 
             RTORRENT_VER=v0.9.8 
             LIBTORRENT_VER=v0.13.8 
-            MAXMIND_LICENSE_KEY=${{ env.MAXMIND_LICENSE_KEY }}
+            MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }}
         if: github.ref == 'refs/heads/develop'
