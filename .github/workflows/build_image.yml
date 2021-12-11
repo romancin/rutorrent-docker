@@ -41,7 +41,7 @@ jobs:
             BASEIMAGE_VERSION=3.14 
             RTORRENT_VER=v0.9.8 
             LIBTORRENT_VER=v0.13.8 
-            MAXMIND_LICENSE_KEY=${env.MAXMIND_LICENSE_KEY}
+            MAXMIND_LICENSE_KEY=${{ env.MAXMIND_LICENSE_KEY }}
         if: github.ref == 'refs/heads/master'
       - name: Build Docker Image (develop branch)
         uses: docker/build-push-action@v2      
@@ -56,5 +56,5 @@ jobs:
             BASEIMAGE_VERSION=3.14 
             RTORRENT_VER=v0.9.8 
             LIBTORRENT_VER=v0.13.8 
-            MAXMIND_LICENSE_KEY=${env.MAXMIND_LICENSE_KEY}
+            MAXMIND_LICENSE_KEY=${{ env.MAXMIND_LICENSE_KEY }}
         if: github.ref == 'refs/heads/develop'
