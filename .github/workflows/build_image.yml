@@ -64,13 +64,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-        if: github.ref == 'refs/heads/master'
       - name: Set variables
         run: |
           echo "USER=romancin" >> $GITHUB_ENV
           echo "REPO=rutorrent" >> $GITHUB_ENV
         working-directory: ./
-        if: github.ref == 'refs/heads/master'
       - name: Update Docker Hub README
         uses: peter-evans/dockerhub-description@v2
         with:
@@ -78,4 +76,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
           repository: ${{ env.USER }}/${{ env.REPO }}
           #short-description: ${{ github.event.repository.description }}
-        if: github.ref == 'refs/heads/master'
+  if: success() && github.ref == 'refs/heads/master'
