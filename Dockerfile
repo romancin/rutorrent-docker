@@ -7,6 +7,7 @@ MAINTAINER romancin
 ARG BUILD_DATE
 ARG VERSION
 ARG BUILD_CORES
+ARG TARGETARCH
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
