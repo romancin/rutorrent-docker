@@ -9,6 +9,7 @@ on:
 jobs:
   docker-build-image:
     runs-on: ubuntu-latest
+    timeout-minutes: 1200
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
