@@ -153,8 +153,11 @@ sed -i 's/changeWhat = "cell-background";/changeWhat = "font";/g' /usr/share/web
 git clone --depth 1 https://github.com/Micdu70/rutorrent-instantsearch instantsearch && \
 git clone --depth 1 https://github.com/xombiemp/rutorrentMobile mobile && \
 rm -rf ipad && \
-git clone --depth 1 https://github.com/dioltas/AddZip && \
-git clone --depth 1 https://github.com/radonthetyrant/rutorrent-discord  && \
+git clone --depth 1 https://github.com/Micdu70/rutorrent-addzip && \
+git clone --depth 1 https://github.com/stickz/rutorrent-discord  && \
+cd rutorrent-discord && \
+git checkout ruTorrentFixes &&  \
+cd .. && \
 mv rutorrent-discord/* . && \
 rm -rf rutorrent-discord && \
 git clone --depth 1 https://github.com/Micdu70/geoip2-rutorrent geoip2 && \
