@@ -42,16 +42,22 @@ cd "${PREV_DIR}" || exit
 
 [[ ! -e /config/nginx/nginx.conf ]] && \
     if [ "$SSL_ENABLED" == "yes" ]
-	then 
+	then
 	  cp /defaults/nginx_ssl.conf /config/nginx/nginx.conf
 	else
 	  cp /defaults/nginx.conf /config/nginx/nginx.conf
 	fi
 [[ ! -e /config/nginx/.htpasswd ]] && \
 	cp /defaults/.htpasswd /config/nginx/.htpasswd
-	
+
 [[ ! -e /config/rtorrent/rtorrent.rc ]] && \
 	cp /defaults/rtorrent.rc /config/rtorrent/rtorrent.rc
+
+if [ "$ENABLE_PYROSCOPE" == "yes" ] && [ ! -e /config/rtorrent/rtorrent.rc ]
+then
+  cp /defaults/rtorrent.rc.pyroscope /config/rtorrent/rtorrent.rc
+fi
+
 cp -pr /config/rutorrent/settings/* /usr/share/webapps/rutorrent/conf/
 
 if [ ! -e "/config/php/php.ini" ]; then
@@ -76,13 +82,13 @@ then
   chown abc:abc \
 	/downloads \
 	/downloads/watch/{bajaunapeli,bitspyder,torrentfactory,hachede,hdcity,learnflakes,puntotorrent,tbplus,waffles,xbytes,otros,pedros,cinemaggedon,torrentland,tunetraxx,brokenstones,32pages,lztr,p2pelite,bitgamer,psytorrents,pleasuredome,hdspain,iptorrents,trancetraffic,morethantv,passthepopcorn,gp32spain,gazellegames,opencd,mteam,retrowithin,divteam,racingforme,bibliotik,beyondhd,myanonamouse,ultimategamer,x264,awesomehd,broadcasthenet,bitme,theplace,theshow,thegeeks,thevault,theempire,theoccult,torrentleech,hdbits,zonaq,torrentech,sceneaccess,efectodoppler,musicvids,apollo,passtheheadphones,notwhatcd} \
-        /downloads/{bajaunapeli,bitspyder,torrentfactory,hachede,hdcity,learnflakes,puntotorrent,tbplus,waffles,xbytes,otros,pedros,cinemaggedon,torrentland,tunetraxx,brokenstones,32pages,lztr,p2pelite,bitgamer,psytorrents,pleasuredome,hdspain,iptorrents,trancetraffic,morethantv,passthepopcorn,gp32spain,gazellegames,opencd,mteam,retrowithin,divteam,racingforme,bibliotik,beyondhd,myanonamouse,ultimategamer,x264,awesomehd,broadcasthenet,bitme,theplace,theshow,thegeeks,thevault,theempire,theoccult,torrentleech,hdbits,zonaq,torrentech,sceneaccess,efectodoppler,musicvids,apollo,passtheheadphones,notwhatcd} 
+        /downloads/{bajaunapeli,bitspyder,torrentfactory,hachede,hdcity,learnflakes,puntotorrent,tbplus,waffles,xbytes,otros,pedros,cinemaggedon,torrentland,tunetraxx,brokenstones,32pages,lztr,p2pelite,bitgamer,psytorrents,pleasuredome,hdspain,iptorrents,trancetraffic,morethantv,passthepopcorn,gp32spain,gazellegames,opencd,mteam,retrowithin,divteam,racingforme,bibliotik,beyondhd,myanonamouse,ultimategamer,x264,awesomehd,broadcasthenet,bitme,theplace,theshow,thegeeks,thevault,theempire,theoccult,torrentleech,hdbits,zonaq,torrentech,sceneaccess,efectodoppler,musicvids,apollo,passtheheadphones,notwhatcd}
 else
   # permissions
   chown abc:abc \
 	/downloads \
 	/downloads/watch/ \
-        /downloads/completed/ 
+        /downloads/completed/
 fi
 
 chown -R abc:abc \

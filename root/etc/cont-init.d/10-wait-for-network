@@ -1,0 +1,24 @@
+#!/usr/bin/with-contenv bash
+
+# Sanitize variables
+SANED_VARS=( WAIT_NETWORK )
+for i in "${WAIT_NETWORK[@]}"
+do
+  export echo "$i"="${!i//\"/}"
+  export echo "$i"="$(echo "${!i}" | tr '[:upper:]' '[:lower:]')"
+done
+
+if [ "$WAIT_NETWORK" == "yes" ]
+then
+  attempt=0
+  while [ $attempt -le 59 ]; do
+      attempt=$(( $attempt + 1 ))
+      echo "Waiting for github.com to be reachable (attempt: $attempt)..."
+      result=$(curl https://github.com)
+      if grep -q 'GitHub: Where the world builds software' <<< $result ; then
+        echo "GitHub is reachable! Continuing..."
+        break
+      fi
+      sleep 2
+  done
+fi
