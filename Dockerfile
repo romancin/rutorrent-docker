@@ -7,6 +7,7 @@ MAINTAINER romancin
 ARG BUILD_DATE
 ARG VERSION
 ARG BUILD_CORES
+ARG TARGETARCH
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
@@ -174,7 +175,7 @@ echo ";extension=geoip.so" >> /etc/php7/php.ini && \
 cd /tmp && \
 git clone --depth 1 https://github.com/mirror/xmlrpc-c.git && \
 cd /tmp/xmlrpc-c/stable && \
-./configure --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
+./configure --build=${TARGETARCH}-unknown-linux-gnu --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
 # compile libtorrent
 if [ "$RTORRENT_VER" == "v0.9.4" ] || [ "$RTORRENT_VER" == "v0.9.6" ]; then apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main -U cppunit-dev==1.13.2-r1 cppunit==1.13.2-r1; fi && \
 cd /tmp && \
