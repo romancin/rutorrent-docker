@@ -11,7 +11,7 @@ ARG TARGETARCH
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
-ARG MEDIAINF_VER="21.09"
+ARG MEDIAINF_VER="21.08"
 ARG CURL_VER="7.82.0"
 ARG GEOIP_VER="1.1.1"
 ARG RTORRENT_VER
