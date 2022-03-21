@@ -7,11 +7,12 @@ MAINTAINER romancin
 ARG BUILD_DATE
 ARG VERSION
 ARG BUILD_CORES
+ARG TARGETARCH
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 # package version
 ARG MEDIAINF_VER="21.03"
-ARG CURL_VER="7.78.0"
+ARG CURL_VER="7.82.0"
 ARG GEOIP_VER="1.1.1"
 ARG RTORRENT_VER
 ARG LIBTORRENT_VER
@@ -23,6 +24,8 @@ ENV LD_LIBRARY_PATH=/usr/local/lib
 ENV CONTEXT_PATH=/
 ENV CREATE_SUBDIR_BY_TRACKERS="no"
 ENV SSL_ENABLED="no"
+ENV WAIT_NETWORK="no"
+ENV ENABLE_PYROSCOPE="no"
 
 # run commands
 RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
@@ -40,6 +43,7 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         tar \
         unrar \
         unzip \
+        p7zip \
         sox \
         wget \
         irssi \
@@ -120,6 +124,8 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
 # QuickBox Theme
 git clone --depth 1 https://github.com/QuickBox/club-QuickBox /usr/share/webapps/rutorrent/plugins/theme/themes/club-QuickBox && \
 git clone --depth 1 https://github.com/Phlooo/ruTorrent-MaterialDesign /usr/share/webapps/rutorrent/plugins/theme/themes/MaterialDesign && \
+git clone --depth 1 https://github.com/Teal-c/rtModern-Remix.git /usr/share/webapps/rutorrent/plugins/theme/themes/rtModern-Remix && \
+
 # ruTorrent plugins
 cd /usr/share/webapps/rutorrent/plugins/ && \
 git clone --depth 1 https://github.com/orobardet/rutorrent-force_save_session force_save_session && \
@@ -127,11 +133,14 @@ git clone --depth 1 https://github.com/AceP1983/ruTorrent-plugins  && \
 mv ruTorrent-plugins/* . && \
 rm -rf ruTorrent-plugins && \
 apk add --no-cache cksfv && \
-git clone --depth 1 https://github.com/nelu/rutorrent-filemanager.git filemanager && \
-git clone --depth 1 https://github.com/nelu/rutorrent-filemanager-media  filemanager-media && \
+mkdir "filemanager" && \
+curl https://codeload.github.com/nelu/rutorrent-filemanager/tar.gz/master | tar -xzf - --overwrite-dir --strip-components=1 -C "filemanager" && \
+mkdir "filemanager-share" && \
+curl https://codeload.github.com/nelu/rutorrent-filemanager-share/tar.gz/master | tar -xzf - --overwrite-dir --strip-components=1 -C "filemanager-share" && \
+mkdir "filemanager-media" && \
+curl https://codeload.github.com/nelu/rutorrent-filemanager-media/tar.gz/master | tar -xzf - --overwrite-dir --strip-components=1 -C "filemanager-media" && \
+chmod 775 -R "/usr/share/webapps/rutorrent/plugins/" && \
 cd /usr/share/webapps/rutorrent/ && \
-chmod 755 plugins/filemanager/scripts/* && \
-rm -rf plugins/fileupload && \
 cd /tmp && \
 git clone --depth 1 https://github.com/mcrapet/plowshare.git && \
 cd plowshare/ && \
@@ -146,8 +155,11 @@ sed -i 's/changeWhat = "cell-background";/changeWhat = "font";/g' /usr/share/web
 git clone --depth 1 https://github.com/Micdu70/rutorrent-instantsearch instantsearch && \
 git clone --depth 1 https://github.com/xombiemp/rutorrentMobile mobile && \
 rm -rf ipad && \
-git clone --depth 1 https://github.com/dioltas/AddZip && \
-git clone --depth 1 https://github.com/radonthetyrant/rutorrent-discord  && \
+git clone --depth 1 https://github.com/Micdu70/rutorrent-addzip addzip && \
+git clone https://github.com/stickz/rutorrent-discord  && \
+cd rutorrent-discord && \
+git checkout ruTorrentFixes &&  \
+cd .. && \
 mv rutorrent-discord/* . && \
 rm -rf rutorrent-discord && \
 git clone --depth 1 https://github.com/Micdu70/geoip2-rutorrent geoip2 && \
@@ -172,7 +184,7 @@ echo ";extension=geoip.so" >> /etc/php7/php.ini && \
 cd /tmp && \
 git clone --depth 1 https://github.com/mirror/xmlrpc-c.git && \
 cd /tmp/xmlrpc-c/stable && \
-./configure --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
+./configure --build=${TARGETARCH}-unknown-linux-gnu --with-libwww-ssl --disable-wininet-client --disable-curl-client --disable-libwww-client --disable-abyss-server --disable-cgi-server && make -j ${NB_CORES} && make install && \
 # compile libtorrent
 if [ "$RTORRENT_VER" == "v0.9.4" ] || [ "$RTORRENT_VER" == "v0.9.6" ]; then apk add -X http://dl-cdn.alpinelinux.org/alpine/v3.6/main -U cppunit-dev==1.13.2-r1 cppunit==1.13.2-r1; fi && \
 cd /tmp && \

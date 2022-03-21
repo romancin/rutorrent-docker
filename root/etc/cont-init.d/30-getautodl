@@ -4,7 +4,10 @@
 [[ ! -d /home/abc ]] && (mkdir /home/abc && chown -R abc:abc /home/abc)
 
 # get rutorrent plugin
-[[ ! -d /usr/share/webapps/rutorrent/plugins/autodl-irssi/.git ]] && (git clone https://github.com/autodl-community/autodl-rutorrent.git /usr/share/webapps/rutorrent/plugins/autodl-irssi && \
+#[[ ! -d /usr/share/webapps/rutorrent/plugins/autodl-irssi/.git ]] && (git clone https://github.com/autodl-community/autodl-rutorrent.git /usr/share/webapps/rutorrent/plugins/autodl-irssi && \
+[[ ! -d /usr/share/webapps/rutorrent/plugins/autodl-irssi/.git ]] && (git clone https://github.com/stickz/autodl-rutorrent.git /usr/share/webapps/rutorrent/plugins/autodl-irssi && \
+cd /usr/share/webapps/rutorrent/plugins/autodl-irssi && \
+git checkout ruTorrentFixes && \
 chown -R abc:abc /usr/share/webapps/rutorrent/plugins/autodl-irssi/)
 
 # get autodl script for irssi
