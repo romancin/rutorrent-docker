@@ -43,6 +43,7 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         tar \
         unrar \
         unzip \
+        p7zip \
         sox \
         wget \
         irssi \
@@ -130,8 +131,13 @@ git clone --depth 1 https://github.com/AceP1983/ruTorrent-plugins  && \
 mv ruTorrent-plugins/* . && \
 rm -rf ruTorrent-plugins && \
 apk add --no-cache cksfv && \
-git clone --depth 1 https://github.com/nelu/rutorrent-filemanager.git filemanager && \
-git clone --depth 1 https://github.com/nelu/rutorrent-filemanager-media  filemanager-media && \
+mkdir "plugins/filemanager" && \
+curl https://codeload.github.com/nelu/rutorrent-filemanager/tar.gz/master | tar -xzf - --overwrite-dir --strip-components=1 -C "filemanager" && \
+mkdir "plugins/filemanager-share" && \
+curl https://codeload.github.com/nelu/rutorrent-filemanager-share/tar.gz/master | tar -xzf - --overwrite-dir --strip-components=1 -C "filemanager-share" && \
+mkdir "plugins/filemanager-media" && \
+curl https://codeload.github.com/nelu/rutorrent-filemanager-media/tar.gz/master | tar -xzf - --overwrite-dir --strip-components=1 -C "filemanager-media" && \
+chmod 775 -R "/usr/share/webapps/rutorrent/plugins/" && \
 cd /usr/share/webapps/rutorrent/ && \
 chmod 755 plugins/filemanager/scripts/* && \
 rm -rf plugins/fileupload && \
