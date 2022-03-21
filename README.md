@@ -126,9 +126,9 @@ In this instance `PUID=1000` and `PGID=1000`, to find yours use `id user` as bel
 ```
 
 ## Changelog
-v6.0.1 (31/07/2021): Implement pyroscope installation optionally and a new option to wait for network to be ready.
+v7.0.0 (21/03/2022): Implement pyroscope installation optionally and a new option to wait for network to be ready. **NOTE**: Important changes made in rutorrent [#2236](https://github.com/Novik/ruTorrent/pull/2236) and [#2247] broke compatibility with v3.10 for some themes and plugins. For the moment, I am using certain forks from [stickz](https://github.com/stickz) (Thank you very much!) to fix certain plugins.
 
-v6.0.0 (31/07/2021): Updated base image to Alpine 3.14 and applications to current versions�
+v6.0.0 (31/07/2021): Updated base image to Alpine 3.14 and applications to current versions.
 
 v5.0.1 (07/11/2020): Disabled rar in filemanager plugin because it is not available in Alpine.
 
