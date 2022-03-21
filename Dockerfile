@@ -131,16 +131,14 @@ git clone --depth 1 https://github.com/AceP1983/ruTorrent-plugins  && \
 mv ruTorrent-plugins/* . && \
 rm -rf ruTorrent-plugins && \
 apk add --no-cache cksfv && \
-mkdir "plugins/filemanager" && \
+mkdir "filemanager" && \
 curl https://codeload.github.com/nelu/rutorrent-filemanager/tar.gz/master | tar -xzf - --overwrite-dir --strip-components=1 -C "filemanager" && \
-mkdir "plugins/filemanager-share" && \
+mkdir "filemanager-share" && \
 curl https://codeload.github.com/nelu/rutorrent-filemanager-share/tar.gz/master | tar -xzf - --overwrite-dir --strip-components=1 -C "filemanager-share" && \
-mkdir "plugins/filemanager-media" && \
+mkdir "filemanager-media" && \
 curl https://codeload.github.com/nelu/rutorrent-filemanager-media/tar.gz/master | tar -xzf - --overwrite-dir --strip-components=1 -C "filemanager-media" && \
 chmod 775 -R "/usr/share/webapps/rutorrent/plugins/" && \
 cd /usr/share/webapps/rutorrent/ && \
-chmod 755 plugins/filemanager/scripts/* && \
-rm -rf plugins/fileupload && \
 cd /tmp && \
 git clone --depth 1 https://github.com/mcrapet/plowshare.git && \
 cd plowshare/ && \
