@@ -124,6 +124,8 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
 # QuickBox Theme
 git clone --depth 1 https://github.com/QuickBox/club-QuickBox /usr/share/webapps/rutorrent/plugins/theme/themes/club-QuickBox && \
 git clone --depth 1 https://github.com/Phlooo/ruTorrent-MaterialDesign /usr/share/webapps/rutorrent/plugins/theme/themes/MaterialDesign && \
+git clone --depth 1 https://github.com/Teal-c/rtModern-Remix.git /usr/share/webapps/rutorrent/plugins/theme/themes/rtModern-Remix && \
+
 # ruTorrent plugins
 cd /usr/share/webapps/rutorrent/plugins/ && \
 git clone --depth 1 https://github.com/orobardet/rutorrent-force_save_session force_save_session && \
@@ -154,7 +156,7 @@ git clone --depth 1 https://github.com/Micdu70/rutorrent-instantsearch instantse
 git clone --depth 1 https://github.com/xombiemp/rutorrentMobile mobile && \
 rm -rf ipad && \
 git clone --depth 1 https://github.com/Micdu70/rutorrent-addzip && \
-git clone --depth 1 https://github.com/stickz/rutorrent-discord  && \
+git clone https://github.com/stickz/rutorrent-discord  && \
 cd rutorrent-discord && \
 git checkout ruTorrentFixes &&  \
 cd .. && \
