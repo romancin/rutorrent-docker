@@ -52,7 +52,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/arm
+          platforms: linux/amd64,linux/aarch64
           push: true
           tags: |
             ${{ env.USER }}/${{ env.REPO }}:develop-${{ env.VERSION }}
