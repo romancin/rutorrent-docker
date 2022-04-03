@@ -8,6 +8,12 @@ pipeline {
   }
   agent any
   stages {
+    stage('Prepare Jenkins worker') {
+      steps {
+                sh 'apt update && apt install -y docker.io'
+      }
+    }
+  stages {
     stage('Cloning Git Repository') {
       steps {
         git url: 'https://github.com/romancin/rutorrent-docker.git',
@@ -28,7 +34,7 @@ pipeline {
           def minor = gitbranch + '-' + versions[0] + '.' + versions[1]
           def patch = gitbranch + '-' + version.trim()
           docker.withRegistry('', registryCredential) {
-            def image = docker.build("$registry:$gitbranch",  "--build-arg BASEIMAGE_VERSION=3.14 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8 --build-arg MAXMIND_LICENSE_KEY=${MAXMIND_LICENSE_KEY} --build-arg TARGETARCH=amd64 -f Dockerfile .")
+            def image = docker.build("$registry:$gitbranch",  "--build-arg BASEIMAGE_VERSION=3.14 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8 --build-arg MAXMIND_LICENSE_KEY=${MAXMIND_LICENSE_KEY} --build-arg TARGETARCH=amd64 --network=host -f Dockerfile .")
             image.push()
             image.push(base)
             image.push(major)
@@ -51,7 +57,7 @@ pipeline {
           def minor = '0.9.8-' + versions[0] + '.' + versions[1]
           def patch = '0.9.8-' + version.trim()
           docker.withRegistry('', registryCredential) {
-            def image = docker.build("$registry:latest", "--build-arg BASEIMAGE_VERSION=3.14 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8 --build-arg MAXMIND_LICENSE_KEY=${MAXMIND_LICENSE_KEY} --build-arg TARGETARCH=amd64 -f Dockerfile .")
+            def image = docker.build("$registry:latest", "--build-arg BASEIMAGE_VERSION=3.14 --build-arg RTORRENT_VER=v0.9.8 --build-arg LIBTORRENT_VER=v0.13.8 --build-arg MAXMIND_LICENSE_KEY=${MAXMIND_LICENSE_KEY} --build-arg TARGETARCH=amd64 --network=host -f Dockerfile .")
             image.push()
             image.push(base)
             image.push(major)
