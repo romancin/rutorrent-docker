@@ -13,7 +13,6 @@ pipeline {
                 sh 'apt update && apt install -y docker.io'
       }
     }
-  stages {
     stage('Cloning Git Repository') {
       steps {
         git url: 'https://github.com/romancin/rutorrent-docker.git',
