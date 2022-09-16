@@ -13,6 +13,7 @@ LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 # package version
 ARG MEDIAINF_VER="21.03"
 ARG CURL_VER="7.82.0"
+ARG C_ARES_VER="1.18.1"
 ARG GEOIP_VER="1.1.1"
 ARG RTORRENT_VER
 ARG LIBTORRENT_VER
@@ -101,12 +102,20 @@ RUN NB_CORES=${BUILD_CORES-`getconf _NPROCESSORS_CONF`} && \
         python3-dev \
         go \
         musl-dev && \
+
+# compile c-ares to fix dns timeouts in rtorrent
+cd /tmp && \
+mkdir c-ares && \
+cd c-ares && \
+wget -qO- https://c-ares.org/download/c-ares-${C_ARES_VER}.tar.gz | tar xz --strip 1 && \
+./configure && make -j ${NB_CORES} && make install && \
+
 # compile curl to fix ssl for rtorrent
 cd /tmp && \
 mkdir curl && \
 cd curl && \
 wget -qO- https://curl.haxx.se/download/curl-${CURL_VER}.tar.gz | tar xz --strip 1 && \
-./configure --with-ssl && make -j ${NB_CORES} && make install && \
+./configure --with-ssl --enable-ares && make -j ${NB_CORES} && make install && \
 ldconfig /usr/bin && ldconfig /usr/lib && \
 # install webui
  mkdir -p \
