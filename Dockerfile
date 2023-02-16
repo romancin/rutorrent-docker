@@ -123,7 +123,6 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
 # install webui extras
 # QuickBox Theme
 git clone --depth 1 https://github.com/QuickBox/club-QuickBox /usr/share/webapps/rutorrent/plugins/theme/themes/club-QuickBox && \
-git clone --depth 1 https://github.com/Phlooo/ruTorrent-MaterialDesign /usr/share/webapps/rutorrent/plugins/theme/themes/MaterialDesign && \
 git clone --depth 1 https://github.com/Teal-c/rtModern-Remix.git /usr/share/webapps/rutorrent/plugins/theme/themes/rtModern-Remix && \
 
 # ruTorrent plugins
