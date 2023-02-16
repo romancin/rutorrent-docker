@@ -5,7 +5,7 @@ def secrets = [
     [path: 'secret/notifications/discord', engineVersion: 2, secretValues: [
         [envVar: 'DISCORD_WEBHOOK', vaultKey: 'webhook']]],
     [path: 'secret/services/maxmind', engineVersion: 2, secretValues: [
-        [envVar: 'MAXMIND_LICENSE_KEY', vaultKey: 'webhook']]],
+        [envVar: 'MAXMIND_LICENSE_KEY', vaultKey: 'license-key']]],
   ]
 
 registry="romancin/rutorrent"
