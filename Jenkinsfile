@@ -36,10 +36,10 @@ podTemplate(label: 'github-docker-builder', cloud: 'kubernetes',
              container('buildkit') {
                 withVault([vaultSecrets: secrets]) {
                  sh """
-                      buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${registry}:${gitbranch},push=true
-                      buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${registry}:${major},push=true
-                      buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${registry}:${minor},push=true
-                      buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${registry}:${patch},push=true
+                      buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --opt build-arg:BASEIMAGE_VERSION=3.14 --opt build-arg:RTORRENT_VER=v0.9.8 --opt build-arg:LIBTORRENT_VER=v0.13.8 --opt build-arg:MAXMIND_LICENSE_KEY=${MAXMIND_LICENSE_KEY} --opt build-arg:TARGETARCH=amd64 --output type=image,name=${registry}:${gitbranch},push=true
+                      buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --opt build-arg:BASEIMAGE_VERSION=3.14 --opt build-arg:RTORRENT_VER=v0.9.8 --opt build-arg:LIBTORRENT_VER=v0.13.8 --opt build-arg:MAXMIND_LICENSE_KEY=${MAXMIND_LICENSE_KEY} --opt build-arg:TARGETARCH=amd64 --output type=image,name=${registry}:${major},push=true
+                      buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --opt build-arg:BASEIMAGE_VERSION=3.14 --opt build-arg:RTORRENT_VER=v0.9.8 --opt build-arg:LIBTORRENT_VER=v0.13.8 --opt build-arg:MAXMIND_LICENSE_KEY=${MAXMIND_LICENSE_KEY} --opt build-arg:TARGETARCH=amd64 --output type=image,name=${registry}:${minor},push=true
+                      buildctl build --frontend dockerfile.v0 --local context=. --local dockerfile=. --opt build-arg:BASEIMAGE_VERSION=3.14 --opt build-arg:RTORRENT_VER=v0.9.8 --opt build-arg:LIBTORRENT_VER=v0.13.8 --opt build-arg:MAXMIND_LICENSE_KEY=${MAXMIND_LICENSE_KEY} --opt build-arg:TARGETARCH=amd64 --output type=image,name=${registry}:${patch},push=true
                     """
                 }
              }
