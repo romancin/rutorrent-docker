@@ -64,7 +64,7 @@ podTemplate(label: 'github-docker-builder', cloud: 'kubernetes',
                 }
              }
              container('docker-readme') {
-               withEnv(['DOCKERHUB_REPO_NAME=tinymediamanager']) {
+               withEnv(['DOCKERHUB_REPO_NAME=rutorrent']) {
                  withVault([vaultSecrets: secrets]) {
                       sh """
                       export DOCKERHUB_USERNAME=${DOCKERHUB_USERNAME}
@@ -79,7 +79,7 @@ podTemplate(label: 'github-docker-builder', cloud: 'kubernetes',
          }
         stage('Notify Build Result') {
           withVault([vaultSecrets: secrets]) {
-            discordSend description: "[Jenkins] - Pipeline CI-docker-tinymediamanager", footer: "", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${DISCORD_WEBHOOK}"
+            discordSend description: "[Jenkins] - Pipeline CI-docker-rutorrent", footer: "", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${DISCORD_WEBHOOK}"
           }
         }
        }
