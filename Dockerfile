@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.3-labs
+# syntax=docker/dockerfile:latest
 ARG BASEIMAGE_VERSION
 FROM lsiobase/alpine:$BASEIMAGE_VERSION
 
@@ -9,13 +9,13 @@ ARG BUILD_CORES
 ARG TARGETARCH
 LABEL build_version="Romancin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
-# package version
+# package version defaults, can be overridden in the .env file when using build.sh
 ARG MEDIAINF_VER="22.12"
 ARG CURL_VER="7.88.0"
 ARG GEOIP_VER="1.1.1"
-ARG RTORRENT_VER
-ARG LIBTORRENT_VER
-ARG RUTORRENT_VER
+ARG RTORRENT_VER="v0.9.8"
+ARG LIBTORRENT_VER="v0.13.8"
+ARG RUTORRENT_VER="master"
 ARG MAXMIND_LICENSE_KEY
 
 # set env
