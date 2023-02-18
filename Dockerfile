@@ -14,6 +14,7 @@ ARG CURL_VER="7.88.0"
 ARG GEOIP_VER="1.1.1"
 ARG RTORRENT_VER
 ARG LIBTORRENT_VER
+ARG RUTORRENT_VER
 ARG MAXMIND_LICENSE_KEY
 
 # set env
@@ -110,8 +111,8 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
  mkdir -p \
         /usr/share/webapps/rutorrent \
         /defaults/rutorrent-conf && \
- git clone --depth 1 https://github.com/Novik/ruTorrent.git \
-        /usr/share/webapps/rutorrent/ && \
+git clone https://github.com/Novik/ruTorrent.git \
+        /usr/share/webapps/rutorrent/ && cd /usr/share/webapps/rutorrent && git checkout $RUTORRENT_VER && \
  mv /usr/share/webapps/rutorrent/conf/* \
         /defaults/rutorrent-conf/ && \
  rm -rf \
@@ -122,7 +123,6 @@ ldconfig /usr/bin && ldconfig /usr/lib && \
 # QuickBox Theme
 git clone --depth 1 https://github.com/QuickBox/club-QuickBox /usr/share/webapps/rutorrent/plugins/theme/themes/club-QuickBox && \
 git clone --depth 1 https://github.com/Teal-c/rtModern-Remix.git /usr/share/webapps/rutorrent/plugins/theme/themes/rtModern-Remix && \
-
 # ruTorrent plugins
 cd /usr/share/webapps/rutorrent/plugins/ && \
 git clone --depth 1 https://github.com/orobardet/rutorrent-force_save_session force_save_session && \
