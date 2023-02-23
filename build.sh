@@ -19,7 +19,6 @@ DOCKER_BUILDKIT=1 docker build --no-cache \
     --build-arg MAXMIND_LICENSE_KEY=$MAXMIND_LICENSE_KEY \
     --build-arg TARGETARCH=amd64 \
     --build-arg RUTORRENT_VER=$RUTORRENT_VER \
-    --network=host \
     --tag "$DOCKER_REPOSITORY:latest" \
     --tag "$DOCKER_REPOSITORY:$RUTORRENT_VER" \
     -f Dockerfile .
