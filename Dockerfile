@@ -44,6 +44,7 @@ apk add --no-cache \
     tar \
     unrar \
     unzip \
+    nano \
     p7zip \
     sox \
     wget \
