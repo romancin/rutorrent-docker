@@ -95,7 +95,6 @@ apk add --no-cache --virtual=build-dependencies \
     make \
     ncurses-dev \
     build-base \
-    libtool \
     subversion \
     linux-headers \
     curl-dev \
