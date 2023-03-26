@@ -85,6 +85,7 @@ apk add --no-cache \
 # install build packages
 apk add --no-cache --virtual=build-dependencies \
     autoconf \
+    autoconf-archive \
     automake \
     cppunit-dev \
     perl-dev \
@@ -195,14 +196,16 @@ cd /tmp
 mkdir libtorrent
 cd libtorrent
 wget -qO- https://github.com/rakshasa/libtorrent/archive/${LIBTORRENT_VER}.tar.gz | tar xz --strip 1
-./autogen.sh && ./configure && make -j ${NB_CORES} && make install
+./autogen.sh || autoreconf -vfi
+./configure && make -j ${NB_CORES} && make install
 
 # compile rtorrent
 cd /tmp
 mkdir rtorrent
 cd rtorrent
 wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | tar xz --strip 1
-./autogen.sh && ./configure --with-xmlrpc-c && make -j ${NB_CORES} && make install
+./autogen.sh || autoreconf -vfi 
+./configure --with-xmlrpc-c && make -j ${NB_CORES} && make install
 
 # compile mediainfo packages
 curl -o /tmp/libmediainfo.tar.gz -L "http://mediaarea.net/download/binary/libmediainfo0/${MEDIAINF_VER}/MediaInfo_DLL_${MEDIAINF_VER}_GNU_FromSource.tar.gz"
