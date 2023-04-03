@@ -10,7 +10,7 @@ fi
 echo "Building ruTorrent $RUTORRENT_VER"
 sleep 2
 
-DOCKER_BUILDKIT=1 docker build --no-cache \
+DOCKER_BUILDKIT=1 BUILDKIT_PROGRESS=$BUILDKIT_PROGRESS docker build --no-cache \
     --build-arg BASEIMAGE_VERSION=$BASEIMAGE_VERSION \
     --build-arg RTORRENT_VER=$RTORRENT_VER \
     --build-arg LIBTORRENT_VER=$LIBTORRENT_VER \

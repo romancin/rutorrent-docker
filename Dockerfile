@@ -204,7 +204,7 @@ cd /tmp
 mkdir rtorrent
 cd rtorrent
 wget -qO- https://github.com/rakshasa/rtorrent/archive/${RTORRENT_VER}.tar.gz | tar xz --strip 1
-./autogen.sh || autoreconf -vfi 
+./autogen.sh || autoreconf -vfi
 ./configure --with-xmlrpc-c && make -j ${NB_CORES} && make install
 
 # compile mediainfo packages
