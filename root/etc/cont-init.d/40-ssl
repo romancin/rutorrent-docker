@@ -31,7 +31,7 @@ then
       -subj "/C=XX/ST=XXXX/L=XXXX/O=XXXX/CN=localhost" \
       -keyout "/config/nginx/key.pem" \
       -out "/config/nginx/cert.pem" \
-      -days 825 -nodes -sha256
+      -days 1825 -nodes -sha256 # 5 year certificate
     fi
     
     if [ ! -e "/config/nginx/conf.d/basic.conf" ] || [ ! -e "/config/nginx/conf.d/ssl.conf" ]
@@ -39,5 +39,6 @@ then
      cp /defaults/conf.d/* /config/nginx/conf.d/
     fi
 else
+    rm -f /config/nginx/conf.d/*.conf
     exit 0
 fi

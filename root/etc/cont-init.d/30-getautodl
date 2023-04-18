@@ -17,6 +17,16 @@ chown -R abc:abc /usr/share/webapps/rutorrent/plugins/autodl-irssi/)
   ln -s /config/.irssi/scripts/autodl-irssi.pl /config/.irssi/scripts/autorun/autodl-irssi.pl && \
   chown -R abc:abc /config/.irssi )
 
+# fix dubious ownership errors when running the container
+#fatal: detected dubious ownership in repository at '/usr/share/webapps/rutorrent/plugins/autodl-irssi'
+#To add an exception for this directory, call:
+#        git config --global --add safe.directory /usr/share/webapps/rutorrent/plugins/autodl-irssi
+#fatal: detected dubious ownership in repository at '/config/.irssi/scripts'
+#To add an exception for this directory, call:
+#        git config --global --add safe.directory /config/.irssi/scripts
+git config --global --add safe.directory /usr/share/webapps/rutorrent/plugins/autodl-irssi
+git config --global --add safe.directory /config/.irssi/scripts
+
 # get updated trackers for irssi-autodl
 wget --quiet -O /tmp/trackers.zip https://github.com/autodl-community/autodl-trackers/archive/master.zip && \
 [[ ! -d /config/.irssi/scripts/AutodlIrssi/trackers ]] && mkdir -p /config/.irssi/scripts/AutodlIrssi/trackers && \
